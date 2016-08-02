@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 1配置自定义文件类myRequestParser，继承MultiPartRequest重写 -->
+<!-- 	<bean type="org.apache.struts2.dispatcher.multipart.MultiPartRequest"
+		name="myRequestParser"
+		class="cn.lonecloud.serviceimp.MyJakartaMultiPartRequest"
+		scope="default" optional="true" /> -->
+
+	<!-- 注意struts2.3.15.1以前版本这里为struts.multipart.handler， struts2.3.15.1（包含2.3.15.1）这里为struts.multipart.parser -->
+	<constant name="struts.multipart.parser" value="myRequestParser" />
+	<constant name="struts.multipart.maxSize" value="2097152000000"></constant>
+	<package name="cn.lonecloud.Action" extends="struts-default" namespace="/">
+		<action name="uploadAction" class="cn.lonecloud.Action.UploadAction">	
+			<result>success.jsp</result>
+		</action>
+		<action name="fileProgressAction" class="cn.lonecloud.Action.FileProgressAction">
+		
+		</action>
+		<action name="deleteSessionAction" class="cn.lonecloud.Action.DeleteSessionAction"></action>
+	</package>
+	<!-- 用于改变他的后缀 -->
+	<constant name="struts.action.extension" value="html,action"></constant>
+</struts>
